@@ -5,7 +5,7 @@ defmodule PetalCache.GarbageCollector do
   alias PetalCache.Utils
 
   def start_link(args), do: 
-    GenServer.start_link(__MODULE__, args)
+    GenServer.start_link(__MODULE__, args, name: Utils.get_garbage_collector())
 
   def init(args) do 
     _ = PetalCache.init_table()

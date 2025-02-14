@@ -22,6 +22,12 @@ defmodule PetalCache do
   def delete(key), do: 
     :ets.delete(@table, key)
 
+  def register() do  
+    Utils.get_garbage_collector()
+    |> :erlang.whereis()
+    |> Process.link()
+  end
+
   def get_cache(), do: 
     self()
     |> Utils.pid_to_string() 
